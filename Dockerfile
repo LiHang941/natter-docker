@@ -2,6 +2,7 @@ FROM alpine:latest
 ENV TZ=Asia/Shanghai
 WORKDIR /root/
 
+COPY run.sh /root/
 COPY natter-config.json /root/
 COPY natter-hook.sh /root/
 RUN apk add --no-cache \
