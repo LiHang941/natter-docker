@@ -1,9 +1,8 @@
 # natter-docker
 
 ```shell
+wget -O docker-compose.yaml https://raw.githubusercontent.com/LiHang941/natter-docker/master/docker-compose.yaml
 docker-compose up -d
-cp natter-config.json conf
-cp natter-hook.sh conf
 ```
 
 > 自行开启路由器的端口转发
