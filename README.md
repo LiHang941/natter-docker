@@ -5,6 +5,9 @@ wget -O docker-compose.yaml https://raw.githubusercontent.com/LiHang941/natter-d
 docker-compose up -d
 ```
 
+## 修改config目录下的配置文件和脚本
+
+
 > 自行开启路由器的端口转发
 
 

@@ -4,7 +4,7 @@ services:
     network_mode: host
     privileged: true
     container_name: natter
-    image:  lihang941/natter-docker:0.0.2
+    image:  lihang941/natter-docker:0.0.7
     restart: always
     volumes:
       - ./config:/root/conf/
