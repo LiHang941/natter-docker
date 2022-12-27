@@ -16,4 +16,4 @@ RUN apk add --no-cache \
     rm -rf /var/cache/apk/* && \
     wget -O /root/natter.py https://raw.githubusercontent.com/MikeWang000000/Natter/v0.9/natter.py && \
 
-CMD ["python","natter.py", "-c", "/root/conf/natter-config.json"]
+CMD ["python3","natter.py", "-c", "/root/conf/natter-config.json"]
