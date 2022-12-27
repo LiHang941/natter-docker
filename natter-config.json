@@ -1,11 +1,11 @@
 {
   "logging": {
     "level": "info",
-    "log_file": "./natter.log"
+    "log_file": "/root/conf/natter.log"
   },
   "status_report": {
     "hook": "bash /root/conf/natter-hook.sh '{protocol}' '{inner_ip}' '{inner_port}' '{outer_ip}' '{outer_port}'",
-    "status_file": "./natter-status.json"
+    "status_file": "/root/conf/natter-status.json"
   },
   "open_port": {
     "tcp": [
