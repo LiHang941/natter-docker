@@ -1,0 +1,53 @@
+name: Publish Docker Image
+on:
+  push:
+    branches: [ "master" ]
+    tags:
+      - '*'
+    paths-ignore:
+      - config.yaml
+      - docker-compose.yml
+      - README.md
+      - LICENSE
+jobs:
+  build:
+    name: build_docker_image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Get names of branch and tag
+        id: vars
+        run: |
+          echo ::set-output name=branch::${GITHUB_REF##*/}
+          echo ::set-output name=tag::${GITHUB_REF##*/}
+      - name: Generate Docker image tag
+        uses: haya14busa/action-cond@v1
+        id: docker_image_tag
+        with:
+          cond: ${{ steps.vars.outputs.branch == 'master' }}
+          if_true: "lihang941/clash-tproxy:latest"
+          if_false: "lihang941/clash-tproxy:${{ steps.vars.outputs.tag }}"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: linux/amd64
+      - name: Set up docker buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: latest
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          platforms: linux/amd64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.docker_image_tag.outputs.value }}
