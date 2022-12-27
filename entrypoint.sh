@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+ls -a /root/
+
 if [ ! -f "/root/conf/natter-config.json" ]; then
     cp -r /root/natter-config.json  /root/conf/natter-config.json  
 fi

@@ -12,7 +12,8 @@ RUN apk add --no-cache \
     python3 && \
     rm -rf /var/cache/apk/* && \
     wget -O /root/natter.py https://raw.githubusercontent.com/MikeWang000000/Natter/v0.9/natter.py && \
-    chmod a+x /usr/local/bin/entrypoint.sh 
+    chmod a+x /usr/local/bin/entrypoint.sh && \
+    mkdir /root/conf/
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["python3","/root/natter.py", "-c", "/root/conf/natter-config.json"]
