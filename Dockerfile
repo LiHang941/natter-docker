@@ -10,6 +10,7 @@ RUN apk add --no-cache \
     bash  \
     curl \
     openssh-client \
+    netcat-openbsd \
     python3 && \
     rm -rf /var/cache/apk/* && \
     wget -O /root/natter.py https://raw.githubusercontent.com/MikeWang000000/Natter/v0.9/natter.py && \
